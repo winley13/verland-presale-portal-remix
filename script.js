@@ -61,21 +61,40 @@ async function connectWallet() {
 }
 
 // --------------------
-// Init
+// Explore Map Button
 // --------------------
-window.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   startCountdown();
 
   document
     .getElementById("connect-button")
     .addEventListener("click", connectWallet);
+
+  // Explore Map button - navigate to map.html
+  const exploreMapBtn = document.getElementById("exploreMapBtn");
+  if (exploreMapBtn) {
+    exploreMapBtn.addEventListener("click", () => {
+      window.location.href = "/map.html";
+    });
+  }
+
+  // Buy Land button
+  const buyLandBtn = document.getElementById("buyLandBtn");
+  if (buyLandBtn) {
+    buyLandBtn.addEventListener("click", () => {
+      // Scroll to presale section
+      document.getElementById("presale").scrollIntoView({ behavior: "smooth" });
+    });
+  }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const exploreBtn = document.getElementById("exploreMapBtn");
-    if (exploreBtn) {
-        exploreBtn.addEventListener("click", () => {
-            window.location.href = "/map";  // Changed from "map.html"
-        });
-    }
-});
+// Quantity changer
+function changeQty(delta) {
+  const input = document.getElementById("mint-qty");
+  if (!input) return;
+  
+  let val = parseInt(input.value) + delta;
+  if (val < 1) val = 1;
+  if (val > 10) val = 10;
+  input.value = val;
+}
