@@ -47,35 +47,22 @@ async function connectWallet() {
     const instance = await web3Modal.connect();
 
     provider = new ethers.BrowserProvider(instance);
-    signer = await provider.getSigner();
-    userAddress = await signer.getAddress();
-
-    const short =
-      `${userAddress.slice(0, 6)}...${userAddress.slice(-4)}`;
-
-    document.getElementById("connect-button").innerText = short;
-    console.log("Wallet connected:", userAddress);
-  } catch (err) {
-    console.error("Wallet connection failed:", err);
-  }
-}
-
+ 
 // --------------------
-// Init
+// Init - Consolidated
 // --------------------
-window.addEventListener("DOMContentLoaded", () => {
-  startCountdown();
-
-  document
-    .getElementById("connect-button")
-    .addEventListener("click", connectWallet);
-});
-
 document.addEventListener("DOMContentLoaded", () => {
-    const exploreBtn = document.getElementById("exploreMapBtn");
-    if (exploreBtn) {
-        exploreBtn.addEventListener("click", () => {
-            window.location.href = "/map";  // Changed from "map.html"
-        });
-    }
+  // Start countdown timer
+  startCountdown();
+  
+  // Setup wallet connection
+  document.getElementById("connect-button").addEventListener("click", connectWallet);
+  
+  // Setup explore map button
+  const exploreBtn = document.getElementById("exploreMapBtn");
+  if (exploreBtn) {
+    exploreBtn.addEventListener("click", () => {
+      window.location.href = "map.html";
+    });
+  }
 });
