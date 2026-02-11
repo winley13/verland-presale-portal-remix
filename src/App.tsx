@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { toast } from 'react-hot-toast';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import MapComponent from './components/MapComponent';
 import { Navbar } from './components/Navbar';
 import { CartSidebar } from './components/CartSidebar';
@@ -145,6 +146,7 @@ function App() {
           </div>
         )}
       </div>
+      <SpeedInsights />
     </div>
   );
 }
